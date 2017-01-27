@@ -14,9 +14,12 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import net.sytes.codeline.entities.Korisnik;
 import net.sytes.codeline.dao.KorisnikDao;
 import net.sytes.codeline.dao.KorisnikDaoImpl;
+import net.sytes.codeline.dao.RolaDao;
+import net.sytes.codeline.dao.RolaDaoImpl;
+import net.sytes.codeline.entities.Korisnik;
+import net.sytes.codeline.entities.Rola;
 
 /**
  * @author Dusan Nesic
@@ -58,7 +61,7 @@ public class ApplicationContextConfig {
 	@Bean(name="sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-		sessionBuilder.addAnnotatedClasses(Korisnik.class);
+		sessionBuilder.addAnnotatedClasses(Korisnik.class, Rola.class);
 		sessionBuilder.addProperties(getHibernateProperties());
 		
 		return sessionBuilder.buildSessionFactory();
@@ -99,4 +102,10 @@ public class ApplicationContextConfig {
 		return new KorisnikDaoImpl(sessionFactory);
 	}
 
+	@Autowired
+	@Bean(name="rolaDao")
+	public RolaDao getRolaDao(SessionFactory sessionFactory) {
+		return new RolaDaoImpl(sessionFactory);
+	}
+	
 }
