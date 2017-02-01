@@ -22,14 +22,6 @@ public class Rola {
 	private String nazivRole;
 	private Date datumKreiranja;
 	private Korisnik korisnikId;
-	
-	public Rola(int rolaId, String nazivRole, Date datumKreiranja, Korisnik korisnikId) {
-		super();
-		this.rolaId = rolaId;
-		this.nazivRole = nazivRole;
-		this.datumKreiranja = datumKreiranja;
-		this.korisnikId = korisnikId;
-	}
 
 	@Id
 	@GeneratedValue

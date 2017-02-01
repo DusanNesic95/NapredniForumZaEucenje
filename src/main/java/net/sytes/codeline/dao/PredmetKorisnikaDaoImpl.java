@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.sytes.codeline.entities.Korisnik;
 import net.sytes.codeline.entities.Predmet;
@@ -31,6 +32,7 @@ public class PredmetKorisnikaDaoImpl implements PredmetKorisnikaDao {
 	 * @see net.sytes.codeline.dao.PredmetKorisnikaDao#dodajPredmetKorisniku(net.sytes.codeline.entities.PredmetKorisnika)
 	 */
 	@Override
+	@Transactional
 	public boolean dodajPredmetKorisniku(PredmetKorisnika predmetKorisnika) {
 		PredmetKorisnika trenutnoPoseduje = trenutnoPoseduje(predmetKorisnika);
 		
@@ -47,6 +49,7 @@ public class PredmetKorisnikaDaoImpl implements PredmetKorisnikaDao {
 	 * @see net.sytes.codeline.dao.PredmetKorisnikaDao#obrisiPredmetKorisniku(net.sytes.codeline.entities.PredmetKorisnika)
 	 */
 	@Override
+	@Transactional
 	public boolean obrisiPredmetKorisniku(PredmetKorisnika predmetKorisnika) {
 		PredmetKorisnika trenutnoPoseduje = trenutnoPoseduje(predmetKorisnika);
 		
@@ -64,6 +67,7 @@ public class PredmetKorisnikaDaoImpl implements PredmetKorisnikaDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Predmet> ucitajSvePredmeteKorisnika(Korisnik korisnik) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(PredmetKorisnika.class)

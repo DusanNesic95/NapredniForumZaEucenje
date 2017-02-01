@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.sytes.codeline.dao.RolaDao;
+import net.sytes.codeline.entities.Korisnik;
 import net.sytes.codeline.entities.Rola;
 
 /**
@@ -64,5 +65,17 @@ public class RolaController {
 	@RequestMapping(value="/ucitajrolupoid", method=RequestMethod.POST)
 	public Rola ucitajRoluPoId(int id) {
 		return rolaDao.ucitajRoluPoId(id);
+	}
+	
+	/**
+	 * Poziv metode DAO sloja za ucitavanje role prema prosledjenom
+	 * korisniku
+	 * 
+	 * @param korisnik - korisnik za kojeg se baza pretrazuje
+	 * @return - vraca objekat Rola ili null u zavisnosti od DAO sloja
+	 */
+	@RequestMapping(value="/ucitajrolukorisnika", method=RequestMethod.POST)
+	public Rola ucitajRoluKorisnika(@RequestBody Korisnik korisnik) {
+		return rolaDao.ucitajRoluKorisnika(korisnik);
 	}
 }

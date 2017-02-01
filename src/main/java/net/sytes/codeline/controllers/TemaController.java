@@ -92,7 +92,7 @@ public class TemaController {
 	 * @return - vraca objekat Tema ukoliko je isti pronadjen, ili null ukoliko
 	 * u bazi ne postoji tema
 	 */
-	@RequestMapping(value="/ucitajsvetemezapredmet", method=RequestMethod.POST)
+	@RequestMapping(value="/ucitajtemupoid", method=RequestMethod.POST)
 	public Tema ucitajTemuPoId(@RequestBody Tema tema) {
 		return temaDao.ucitajTemuPoId(tema.getTemaId());
 	}

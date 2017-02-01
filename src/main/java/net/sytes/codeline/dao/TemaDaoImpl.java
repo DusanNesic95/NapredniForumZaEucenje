@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.sytes.codeline.entities.Predmet;
 import net.sytes.codeline.entities.Tema;
@@ -30,6 +31,7 @@ public class TemaDaoImpl implements TemaDao {
 	 * @see net.sytes.codeline.dao.TemaDao#dodajTemu(net.sytes.codeline.entities.Tema)
 	 */
 	@Override
+	@Transactional
 	public boolean dodajTemu(Tema tema) {
 		Tema postojecaTema = postojecaTema(tema);
 		
@@ -46,6 +48,7 @@ public class TemaDaoImpl implements TemaDao {
 	 * @see net.sytes.codeline.dao.TemaDao#izmeniTemu(net.sytes.codeline.entities.Tema)
 	 */
 	@Override
+	@Transactional
 	public boolean izmeniTemu(Tema tema) {
 		Tema postojecaTema = postojecaTema(tema);
 		
@@ -62,6 +65,7 @@ public class TemaDaoImpl implements TemaDao {
 	 * @see net.sytes.codeline.dao.TemaDao#obrisiTemu(int)
 	 */
 	@Override
+	@Transactional
 	public boolean obrisiTemu(int id) {
 		Tema postojecaTema = ucitajTemuPoId(id);
 		
@@ -79,6 +83,7 @@ public class TemaDaoImpl implements TemaDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Tema> ucitajSveTeme() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Tema.class)
@@ -90,6 +95,7 @@ public class TemaDaoImpl implements TemaDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Tema> ucitajSveTemeZaPredmet(Predmet predmet) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Tema.class)
@@ -101,6 +107,7 @@ public class TemaDaoImpl implements TemaDao {
 	 * @see net.sytes.codeline.dao.TemaDao#ucitajTemuPoId(int)
 	 */
 	@Override
+	@Transactional
 	public Tema ucitajTemuPoId(int id) {
 		Tema postojecaTema = (Tema) sessionFactory.getCurrentSession()
 				.createCriteria(Tema.class)

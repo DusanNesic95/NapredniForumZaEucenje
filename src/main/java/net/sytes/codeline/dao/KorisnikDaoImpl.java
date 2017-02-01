@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.sytes.codeline.entities.Korisnik;
 
@@ -29,6 +30,7 @@ public class KorisnikDaoImpl implements KorisnikDao {
 	 * @see net.sytes.codeline.dao.KorisnikDao#dodajKorisnika(net.sytes.codeline.entities.Korisnik)
 	 */
 	@Override
+	@Transactional
 	public boolean dodajKorisnika(Korisnik korisnik) {
 		Korisnik postojeciKorisnik = postojeciKorisnik(korisnik);
 		
@@ -45,6 +47,7 @@ public class KorisnikDaoImpl implements KorisnikDao {
 	 * @see net.sytes.codeline.dao.KorisnikDao#izmeniKorisnika(net.sytes.codeline.entities.Korisnik)
 	 */
 	@Override
+	@Transactional
 	public boolean izmeniKorisnika(Korisnik korisnik) {
 		Korisnik postojeciKorisnik = postojeciKorisnik(korisnik);
 		
@@ -61,6 +64,7 @@ public class KorisnikDaoImpl implements KorisnikDao {
 	 * @see net.sytes.codeline.dao.KorisnikDao#obrisiKorisnika(int)
 	 */
 	@Override
+	@Transactional
 	public boolean obrisiKorisnika(int id) {
 		Korisnik postojeciKorisnik = ucitajKorsinikaPoId(id);
 		
@@ -78,6 +82,7 @@ public class KorisnikDaoImpl implements KorisnikDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Korisnik> ucitajSveKorisnike() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Korisnik.class)
@@ -88,6 +93,7 @@ public class KorisnikDaoImpl implements KorisnikDao {
 	 * @see net.sytes.codeline.dao.KorisnikDao#ucitajKorsinikaPoId(int)
 	 */
 	@Override
+	@Transactional
 	public Korisnik ucitajKorsinikaPoId(int id) {
 		Korisnik postojeciKorisnik = (Korisnik) sessionFactory.getCurrentSession()
 				.createCriteria(Korisnik.class)
@@ -101,6 +107,25 @@ public class KorisnikDaoImpl implements KorisnikDao {
 		return postojeciKorisnik;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.sytes.codeline.dao.KorisnikDao#prijava(net.sytes.codeline.entities.Korisnik)
+	 */
+	@Override
+	@Transactional
+	public Korisnik prijava(Korisnik korisnik) {
+		Korisnik postojeciKorisnik = postojeciKorisnik(korisnik);
+		
+		if (postojeciKorisnik == null) {
+			return null;
+		} else {
+			if (postojeciKorisnik.getLozinka().equals(korisnik.getLozinka())) {
+				return postojeciKorisnik;
+			}
+			
+			return null;
+		}
+	}
+	
 	/**
 	 * Ucitava objekat Korisnik iz baze prema prosledjenim parametrima id i korisnicko ime
 	 * @param korisnik - objekat iz kojeg se izvlace parametri za pretragu
@@ -110,7 +135,6 @@ public class KorisnikDaoImpl implements KorisnikDao {
 	private Korisnik postojeciKorisnik(Korisnik korisnik) {
 		Korisnik postojeciKorisnik = (Korisnik) sessionFactory.getCurrentSession()
 				.createCriteria(Korisnik.class)
-				.add(Restrictions.eq("korisnikId", korisnik.getKorisnikId()))
 				.add(Restrictions.eq("korisnickoIme", korisnik.getKorisnickoIme()))
 				.uniqueResult();
 		return postojeciKorisnik;

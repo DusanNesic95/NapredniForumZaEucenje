@@ -4,7 +4,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import net.sytes.codeline.entities.Korisnik;
 import net.sytes.codeline.entities.Rola;
 
 /**
@@ -27,6 +29,7 @@ public class RolaDaoImpl implements RolaDao {
 	 * @see net.sytes.codeline.dao.RolaDao#dodajRolu(net.sytes.codeline.entities.Rola)
 	 */
 	@Override
+	@Transactional
 	public boolean dodajRolu(Rola rola) {
 		Rola postojecaRola = postojecaRola(rola);
 		
@@ -43,6 +46,7 @@ public class RolaDaoImpl implements RolaDao {
 	 * @see net.sytes.codeline.dao.RolaDao#izmeniRolu(net.sytes.codeline.entities.Rola)
 	 */
 	@Override
+	@Transactional
 	public boolean izmeniRolu(Rola rola) {
 		Rola postojecaRola = postojecaRola(rola);
 		
@@ -59,6 +63,7 @@ public class RolaDaoImpl implements RolaDao {
 	 * @see net.sytes.codeline.dao.RolaDao#obrisiRolu(int)
 	 */
 	@Override
+	@Transactional
 	public boolean obrisiRolu(int id) {
 		Rola postojecaRola = ucitajRoluPoId(id);
 		
@@ -75,6 +80,7 @@ public class RolaDaoImpl implements RolaDao {
 	 * @see net.sytes.codeline.dao.RolaDao#ucitajRoluPoId(int)
 	 */
 	@Override
+	@Transactional
 	public Rola ucitajRoluPoId(int id) {
 		Rola postojecaRola = (Rola) sessionFactory.getCurrentSession()
 				.createCriteria(Rola.class)
@@ -86,6 +92,18 @@ public class RolaDaoImpl implements RolaDao {
 		}
 		
 		return postojecaRola;
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.sytes.codeline.dao.RolaDao#ucitajRoluKorisnika(net.sytes.codeline.entities.Korisnik)
+	 */
+	@Override
+	@Transactional
+	public Rola ucitajRoluKorisnika(Korisnik korisnik) {
+		return (Rola) sessionFactory.getCurrentSession()
+				.createCriteria(Rola.class)
+				.add(Restrictions.eq("korisnikId", korisnik))
+				.uniqueResult();
 	}
 	
 	/**

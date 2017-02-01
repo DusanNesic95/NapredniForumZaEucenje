@@ -32,7 +32,7 @@ public class PredmetKorisnikaController {
 	 * @return - vraca true ukoliko je predmet uspesno dodat korisniku, false ukoliko
 	 * je predmet vec dodat korisniku
 	 */
-	@RequestMapping(name="/dodajpredmetkorisniku", method=RequestMethod.POST)
+	@RequestMapping(value="/dodajpredmetkorisniku", method=RequestMethod.POST)
 	public boolean dodajPredmetKorisniku(@RequestBody PredmetKorisnika predmetKorisnika) {
 		return predmetKorisnikaDao.dodajPredmetKorisniku(predmetKorisnika);
 	}
@@ -44,7 +44,7 @@ public class PredmetKorisnikaController {
 	 * @return - vraca true ukoliko je predmet uspesno obrisan korisniku, false ukoliko
 	 * predmet nije ni bio dodeljen korisniku
 	 */
-	@RequestMapping(name="/obrisipredmetkorisniku", method=RequestMethod.POST)
+	@RequestMapping(value="/obrisipredmetkorisniku", method=RequestMethod.POST)
 	public boolean obrisiPredmetKorisniku(@RequestBody PredmetKorisnika predmetKorisnika) {
 		return predmetKorisnikaDao.obrisiPredmetKorisniku(predmetKorisnika);
 	}
@@ -56,7 +56,7 @@ public class PredmetKorisnikaController {
 	 * @return - vraca popunjenu listu predmeta koji su pronadjeni u bazi, ili praznu
 	 * listu ukoliko korisnik nema ni jedan dodeljen predmet
 	 */
-	@RequestMapping(name="/ucitajsvepredmetekorisnika", method=RequestMethod.POST)
+	@RequestMapping(value="/ucitajsvepredmetekorisnika", method=RequestMethod.POST)
 	public List<Predmet> ucitajSvePredmeteKorisnika(@RequestBody Korisnik korisnik) {
 		return predmetKorisnikaDao.ucitajSvePredmeteKorisnika(korisnik);
 	}

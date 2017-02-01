@@ -77,4 +77,15 @@ public class KorisnikController {
 	public Korisnik ucitajKorisnikaPoId(int id) {
 		return korisnikDao.ucitajKorsinikaPoId(id);
 	}
+	
+	/**
+	 * Poziv metode DAO sloja za prijavu korisnika
+	 * 
+	 * @param korisnik - objekat koji sadrzi username i password
+	 * @return - vraca objekat Korisnik ili null u zavisnosti od DAO sloja
+	 */
+	@RequestMapping(value="/prijava", method=RequestMethod.POST)
+	public Korisnik prijava(@RequestBody Korisnik korisnik) {
+		return korisnikDao.prijava(korisnik);
+	}
 }

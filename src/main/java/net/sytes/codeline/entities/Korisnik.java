@@ -23,16 +23,6 @@ public class Korisnik {
 	private String adresa;
 	private String brojTelefona;
 	private Date datumKreiranja;
-	
-	public Korisnik(int korisnikId, String korisnickoIme, String lozinka, String adresa, String brojTelefona,
-			Date datumKreiranja) {
-		this.korisnikId = korisnikId;
-		this.korisnickoIme = korisnickoIme;
-		this.lozinka = lozinka;
-		this.adresa = adresa;
-		this.brojTelefona = brojTelefona;
-		this.datumKreiranja = datumKreiranja;
-	}
 
 	@Id
 	@GeneratedValue

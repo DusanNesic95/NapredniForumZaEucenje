@@ -1,5 +1,6 @@
 package net.sytes.codeline.dao;
 
+import net.sytes.codeline.entities.Korisnik;
 import net.sytes.codeline.entities.Rola;
 
 /**
@@ -45,5 +46,15 @@ public interface RolaDao {
 	 * ukoliko ista postoji, vraca null ukoliko rola ne postoji
 	 */
 	public Rola ucitajRoluPoId(int id);
+	
+	/**
+	 * Pretrazuje bazu podataka za rolu koju korisnik ima dodeljenu
+	 * 
+	 * @param korisnik - korisnik za kojeg se pretraga vrsi
+	 * @return - objekat Rola ukoliko je korisniku dodeljena rola,
+	 * vraca null ukoliko korisnik ne posoji, ili mu nije dodeljena ni
+	 * jedna rola
+	 */
+	public Rola ucitajRoluKorisnika(Korisnik korisnik);
 	
 }

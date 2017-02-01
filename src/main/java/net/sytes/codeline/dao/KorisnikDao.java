@@ -54,4 +54,14 @@ public interface KorisnikDao {
 	 */
 	public Korisnik ucitajKorsinikaPoId(int id);
 	
+	/**
+	 * Vraca korisnika ako su username i password iz baze podataka ispravni
+	 * 
+	 * @param korisnik - objekat iz kojeg se citaju username i password za proveru
+	 * @return - objekat klase Korisnik ukoliko korisnik postoji i uneti su ispravni
+	 * username i password, vraca null ukoliko korisnik ne postoji, ili je password
+	 * neispravan
+	 */
+	public Korisnik prijava(Korisnik korisnik);
+	
 }

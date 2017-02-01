@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.sytes.codeline.entities.Predmet;
 
@@ -29,6 +30,7 @@ public class PredmetDaoImpl implements PredmetDao {
 	 * @see net.sytes.codeline.dao.PredmetDao#dodajPredmet(net.sytes.codeline.entities.Predmet)
 	 */
 	@Override
+	@Transactional
 	public boolean dodajPredmet(Predmet predmet) {
 		Predmet postojeciPredmet = postojeciPredmet(predmet);
 		
@@ -45,6 +47,7 @@ public class PredmetDaoImpl implements PredmetDao {
 	 * @see net.sytes.codeline.dao.PredmetDao#izmeniPredmet(net.sytes.codeline.entities.Predmet)
 	 */
 	@Override
+	@Transactional
 	public boolean izmeniPredmet(Predmet predmet) {
 		Predmet postojeciPredmet = postojeciPredmet(predmet);
 		
@@ -61,6 +64,7 @@ public class PredmetDaoImpl implements PredmetDao {
 	 * @see net.sytes.codeline.dao.PredmetDao#obrisiPredmet(int)
 	 */
 	@Override
+	@Transactional
 	public boolean obrisiPredmet(int id) {
 		Predmet postojeciPredmet = ucitajPredmetPoId(id);
 		
@@ -78,6 +82,7 @@ public class PredmetDaoImpl implements PredmetDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Predmet> ucitajSvePredmete() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Predmet.class)
@@ -88,6 +93,7 @@ public class PredmetDaoImpl implements PredmetDao {
 	 * @see net.sytes.codeline.dao.PredmetDao#ucitajPredmetPoId(int)
 	 */
 	@Override
+	@Transactional
 	public Predmet ucitajPredmetPoId(int id) {
 		Predmet postojeciPredmet = (Predmet) sessionFactory.getCurrentSession()
 				.createCriteria(Predmet.class)
