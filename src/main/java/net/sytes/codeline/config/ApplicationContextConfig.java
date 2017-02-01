@@ -16,10 +16,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import net.sytes.codeline.dao.KorisnikDao;
 import net.sytes.codeline.dao.KorisnikDaoImpl;
+import net.sytes.codeline.dao.PredmetDao;
+import net.sytes.codeline.dao.PredmetDaoImpl;
+import net.sytes.codeline.dao.PredmetKorisnikaDao;
+import net.sytes.codeline.dao.PredmetKorisnikaDaoImpl;
 import net.sytes.codeline.dao.RolaDao;
 import net.sytes.codeline.dao.RolaDaoImpl;
+import net.sytes.codeline.dao.TemaDao;
+import net.sytes.codeline.dao.TemaDaoImpl;
 import net.sytes.codeline.entities.Korisnik;
+import net.sytes.codeline.entities.Predmet;
+import net.sytes.codeline.entities.PredmetKorisnika;
 import net.sytes.codeline.entities.Rola;
+import net.sytes.codeline.entities.Tema;
 
 /**
  * @author Dusan Nesic
@@ -61,7 +70,8 @@ public class ApplicationContextConfig {
 	@Bean(name="sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-		sessionBuilder.addAnnotatedClasses(Korisnik.class, Rola.class);
+		sessionBuilder.addAnnotatedClasses(Korisnik.class, Rola.class, Predmet.class
+				, PredmetKorisnika.class, Tema.class);
 		sessionBuilder.addProperties(getHibernateProperties());
 		
 		return sessionBuilder.buildSessionFactory();
@@ -108,4 +118,21 @@ public class ApplicationContextConfig {
 		return new RolaDaoImpl(sessionFactory);
 	}
 	
+	@Autowired
+	@Bean(name="predmetDao")
+	public PredmetDao getPredmetDao(SessionFactory sessionFactory) {
+		return new PredmetDaoImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="predmetKorisnikaDao")
+	public PredmetKorisnikaDao getPredmetKorisnikaDao(SessionFactory sessionFactory) {
+		return new PredmetKorisnikaDaoImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="temaDao")
+	public TemaDao getTemaDao(SessionFactory sessionFactory) {
+		return new TemaDaoImpl(sessionFactory);
+	}
 }
