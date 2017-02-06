@@ -106,7 +106,7 @@ public class Materijal {
 		this.brojPreporukaNegativno = brojPreporukaNegativno;
 	}
 	
-	@Column(name="MATERIJAL_FLEG")
+	@Column(name="MATERIJAL_FLAG")
 	public int getMaterijalFleg() {
 		return materijalFleg;
 	}

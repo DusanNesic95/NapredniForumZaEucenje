@@ -56,7 +56,8 @@ public class TemaDaoImpl implements TemaDao {
 			return false;
 		}
 		
-		sessionFactory.getCurrentSession().update(tema);
+		postojecaTema.setOpisTeme(tema.getOpisTeme());
+		sessionFactory.getCurrentSession().update(postojecaTema);
 		
 		return true;
 	}

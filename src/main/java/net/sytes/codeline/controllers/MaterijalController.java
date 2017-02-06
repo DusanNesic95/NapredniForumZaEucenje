@@ -1,6 +1,7 @@
 package net.sytes.codeline.controllers;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.sytes.codeline.dao.MaterijalDao;
+import net.sytes.codeline.dao.TemaDao;
 import net.sytes.codeline.entities.Materijal;
 import net.sytes.codeline.entities.Tema;
+import net.sytes.codeline.entities.Predmet;
 
 /**
  * @author dusannesic
@@ -23,6 +26,8 @@ public class MaterijalController {
 
 	@Autowired
 	private MaterijalDao materijalDao;
+	@Autowired
+	private TemaDao temaDao;
 	
 	/**
 	 * Poziv metode DAO sloja za dodavanje objekta u bazu podataka
@@ -87,8 +92,35 @@ public class MaterijalController {
 	 * DAO sloja
 	 */
 	@RequestMapping(value="/ucitajmaterijalepotemi", method=RequestMethod.POST)
-	public List<Materijal> ucitajMaterijalePoTemi(Tema tema) {
+	public List<Materijal> ucitajMaterijalePoTemi(@RequestBody Tema tema) {
 		return materijalDao.ucitajMaterijalePoTemi(tema);
 	}
 	
+	/**
+	 * Vraca listu materijala prema prosledjenom predmetu, koji su obelezeni
+	 * za nastavni materijal
+	 * 
+	 * @param predmet - predmet po kojem se pretrazuje baza podataka
+	 * @return - vraca listu materijala ili praznu listu u zavisnosti od
+	 * DAO sloja
+	 */
+	@RequestMapping(value="/ucitajmaterijalepopredmetu", method=RequestMethod.POST)
+	public List<Materijal> ucitajMaterijalePoPredmetu(@RequestBody Predmet predmet) {
+		List<Tema> temePredmeta = temaDao.ucitajSveTemeZaPredmet(predmet);
+
+		List<Materijal> sviMaterijali = new ArrayList<>();
+		for (Tema tema : temePredmeta) {
+			sviMaterijali.addAll(materijalDao.ucitajMaterijalePoTemi(tema));
+		}
+
+		List<Materijal> ukljucenMaterijal = new ArrayList<>();
+		for (Materijal materijal : sviMaterijali) {
+			if (materijal.getMaterijalFleg() == 1) {
+				ukljucenMaterijal.add(materijal);
+			}
+		}
+
+		return ukljucenMaterijal;
+	}
+
 }
