@@ -1,5 +1,8 @@
 package net.sytes.codeline.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,6 +109,24 @@ public class RolaDaoImpl implements RolaDao {
 				.uniqueResult();
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.sytes.codeline.dao.RolaDao#ucitajSveProfesore()
+	 */
+	@Override
+	@Transactional
+	public List<Korisnik> ucitajSveProfesore() {
+		return ucitajKorisnikePoRoli("PROFESOR");
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.sytes.codeline.dao.RolaDao#ucitajSveStudente()
+	 */
+	@Override
+	@Transactional
+	public List<Korisnik> ucitajSveStudente() {
+		return ucitajKorisnikePoRoli("STUDENT");
+	}
+	
 	/**
 	 * Ucitava objekat Rola iz baze prema prosledjenim parametrima id
 	 * @param rola - objekat iz kojeg se izvlace parametri za pretragu
@@ -123,4 +144,27 @@ public class RolaDaoImpl implements RolaDao {
 		return postojecaRola;
 	}
 
+	/**
+	 * Ucitava sve korisnike iz baze podataka prema prosledjenoj roli
+	 * 
+	 * @param trenutnaRola - rola koju pretrazujemo
+	 * @return - vraca listu korisnika ukoliko u bazi postoje korisnici
+	 * sa trazenom rolom, ili vraca praznu listu
+	 */
+	@SuppressWarnings("unchecked")
+	private List<Korisnik> ucitajKorisnikePoRoli(String trenutnaRola) {
+		List<Rola> sveRoleProfesora = sessionFactory.getCurrentSession()
+				.createCriteria(Rola.class)
+				.add(Restrictions.eq("nazivRole", trenutnaRola))
+				.list();
+		
+		List<Korisnik> profesori = new ArrayList<>();
+		
+		for (Rola rola : sveRoleProfesora) {
+			profesori.add(rola.getKorisnikId());
+		}
+		
+		return profesori;
+	}
+	
 }

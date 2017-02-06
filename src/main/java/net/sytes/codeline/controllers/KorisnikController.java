@@ -53,8 +53,8 @@ public class KorisnikController {
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
 	@RequestMapping(value="/obrisikorisnika", method=RequestMethod.POST)
-	public boolean obrisiKorisnika(int id) {
-		return korisnikDao.obrisiKorisnika(id);
+	public boolean obrisiKorisnika(@RequestBody Korisnik korisnik) {
+		return korisnikDao.obrisiKorisnika(korisnik.getKorisnikId());
 	}
 	
 	/**

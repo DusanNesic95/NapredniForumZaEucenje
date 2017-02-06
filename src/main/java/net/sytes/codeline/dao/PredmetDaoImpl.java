@@ -55,7 +55,9 @@ public class PredmetDaoImpl implements PredmetDao {
 			return false;
 		}
 		
-		sessionFactory.getCurrentSession().update(predmet);
+		postojeciPredmet.setOpisPredmeta(predmet.getOpisPredmeta());
+		postojeciPredmet.setSkolskaGodina(predmet.getSkolskaGodina());
+		sessionFactory.getCurrentSession().update(postojeciPredmet);
 		
 		return true;
 	}
@@ -118,9 +120,7 @@ public class PredmetDaoImpl implements PredmetDao {
 	private Predmet postojeciPredmet(Predmet predmet) {
 		Predmet postojeciPredmet = (Predmet) sessionFactory.getCurrentSession()
 				.createCriteria(Predmet.class)
-				.add(Restrictions.eq("predmetId", predmet.getPredmetId()))
 				.add(Restrictions.eq("nazivPredmeta", predmet.getNazivPredmeta()))
-				.add(Restrictions.eq("skolskaGodina", predmet.getSkolskaGodina()))
 				.uniqueResult();
 		return postojeciPredmet;
 	}

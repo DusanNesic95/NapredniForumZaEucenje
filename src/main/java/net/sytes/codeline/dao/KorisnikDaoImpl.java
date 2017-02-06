@@ -55,7 +55,10 @@ public class KorisnikDaoImpl implements KorisnikDao {
 			return false;
 		}
 		
-		sessionFactory.getCurrentSession().update(korisnik);
+		postojeciKorisnik.setLozinka(korisnik.getLozinka());
+		postojeciKorisnik.setAdresa(korisnik.getAdresa());
+		postojeciKorisnik.setBrojTelefona(korisnik.getBrojTelefona());
+		sessionFactory.getCurrentSession().update(postojeciKorisnik);
 		
 		return true;
 	}

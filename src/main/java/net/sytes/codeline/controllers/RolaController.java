@@ -1,5 +1,7 @@
 package net.sytes.codeline.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,5 +79,27 @@ public class RolaController {
 	@RequestMapping(value="/ucitajrolukorisnika", method=RequestMethod.POST)
 	public Rola ucitajRoluKorisnika(@RequestBody Korisnik korisnik) {
 		return rolaDao.ucitajRoluKorisnika(korisnik);
+	}
+	
+	/**
+	 * Poziv metode DAO sloja za ucitavanje svih profesora
+	 * 
+	 * @return - vraca listu profesora ili praznu listu u zavisnosti
+	 * od DAO sloja
+	 */
+	@RequestMapping(value="/ucitajsveprofesore", method=RequestMethod.POST)
+	public List<Korisnik> ucitajSveProfesore() {
+		return rolaDao.ucitajSveProfesore();
+	}
+	
+	/**
+	 * Poziv metode DAO sloja za ucitavanje svih studenata
+	 * 
+	 * @return - vraca listu profesora ili praznu listu u zavisnosti
+	 * od DAO sloja
+	 */
+	@RequestMapping(value="/ucitajsvestudente", method=RequestMethod.POST)
+	public List<Korisnik> ucitajSveStudente() {
+		return rolaDao.ucitajSveStudente();
 	}
 }

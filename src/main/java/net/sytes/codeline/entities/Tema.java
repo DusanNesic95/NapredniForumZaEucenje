@@ -23,14 +23,6 @@ public class Tema {
 	private String opisTeme;
 	private Date datumKreiranja;
 	private Predmet predmetId;
-	
-	public Tema(int temaId, String nazivTeme, String opisTeme, Date datumKreiranja, Predmet predmetId) {
-		this.temaId = temaId;
-		this.nazivTeme = nazivTeme;
-		this.opisTeme = opisTeme;
-		this.datumKreiranja = datumKreiranja;
-		this.predmetId = predmetId;
-	}
 
 	@Id
 	@GeneratedValue

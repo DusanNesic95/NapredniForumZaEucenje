@@ -23,13 +23,6 @@ public class PredmetKorisnika {
 	private Predmet predmetId;
 	private Date datumKreiranja;
 	
-	public PredmetKorisnika(int predmetKorisnikaId, Korisnik korisnikId, Predmet predmetId, Date datumKreiranja) {
-		this.predmetKorisnikaId = predmetKorisnikaId;
-		this.korisnikId = korisnikId;
-		this.predmetId = predmetId;
-		this.datumKreiranja = datumKreiranja;
-	}
-	
 	@Id
 	@GeneratedValue
 	@Column(name="PREDMET_KORISNIKA_ID")

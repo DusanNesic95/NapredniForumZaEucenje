@@ -19,16 +19,8 @@ public class Predmet {
 	private int predmetId;
 	private String nazivPredmeta;
 	private String opisPredmeta;
-	private Date skolskaGodina;
+	private String skolskaGodina;
 	private Date datumKreiranja;
-	
-	public Predmet(int predmetId, String nazivPredmeta, String opisPredmeta, Date skolskaGodina, Date datumKreiranja) {
-		this.predmetId = predmetId;
-		this.nazivPredmeta = nazivPredmeta;
-		this.opisPredmeta = opisPredmeta;
-		this.skolskaGodina = skolskaGodina;
-		this.datumKreiranja = datumKreiranja;
-	}
 
 	@Id
 	@GeneratedValue
@@ -60,11 +52,11 @@ public class Predmet {
 	}
 
 	@Column(name="SKOLSKA_GODINA")
-	public Date getSkolskaGodina() {
+	public String getSkolskaGodina() {
 		return skolskaGodina;
 	}
 
-	public void setSkolskaGodina(Date skolskaGodina) {
+	public void setSkolskaGodina(String skolskaGodina) {
 		this.skolskaGodina = skolskaGodina;
 	}
 

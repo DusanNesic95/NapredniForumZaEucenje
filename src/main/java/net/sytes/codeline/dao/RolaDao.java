@@ -1,5 +1,7 @@
 package net.sytes.codeline.dao;
 
+import java.util.List;
+
 import net.sytes.codeline.entities.Korisnik;
 import net.sytes.codeline.entities.Rola;
 
@@ -56,5 +58,19 @@ public interface RolaDao {
 	 * jedna rola
 	 */
 	public Rola ucitajRoluKorisnika(Korisnik korisnik);
+	
+	/**
+	 * Ucitava sve korisnije iz baze podataka koji imaju dodeljenu rolu PROFESOR
+	 * 
+	 * @return - listu korisnika, ili praznu listu ukoliko korisnici ne postoje
+	 */
+	public List<Korisnik> ucitajSveProfesore();
+	
+	/**
+	 * Ucitava sve korisnije iz baze podataka koji imaju dodeljenu rolu STUDENT
+	 * 
+	 * @return - listu korisnika, ili praznu listu ukoliko korisnici ne postoje
+	 */
+	public List<Korisnik> ucitajSveStudente();
 	
 }

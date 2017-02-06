@@ -131,7 +131,6 @@ public class TemaDaoImpl implements TemaDao {
 	private Tema postojecaTema(Tema tema) {
 		Tema postojecaTema = (Tema) sessionFactory.getCurrentSession()
 				.createCriteria(Tema.class)
-				.add(Restrictions.eq("temaId", tema.getTemaId()))
 				.add(Restrictions.eq("nazivTeme", tema.getNazivTeme()))
 				.uniqueResult();
 		return postojecaTema;

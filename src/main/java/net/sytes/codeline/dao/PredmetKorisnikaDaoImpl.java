@@ -86,7 +86,6 @@ public class PredmetKorisnikaDaoImpl implements PredmetKorisnikaDao {
 	private PredmetKorisnika trenutnoPoseduje(PredmetKorisnika predmetKorisnika) {
 		PredmetKorisnika trenutnoPoseduje = (PredmetKorisnika) sessionFactory.getCurrentSession()
 				.createCriteria(PredmetKorisnika.class)
-				.add(Restrictions.eq("predmetKorisnikaId", predmetKorisnika.getPredmetKorisnikaId()))
 				.add(Restrictions.eq("predmetId", predmetKorisnika.getPredmetId()))
 				.add(Restrictions.eq("korisnikId", predmetKorisnika.getKorisnikId()))
 				.uniqueResult();

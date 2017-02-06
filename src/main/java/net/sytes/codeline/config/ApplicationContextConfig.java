@@ -8,14 +8,17 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import net.sytes.codeline.dao.KomentarDao;
+import net.sytes.codeline.dao.KomentarDaoImpl;
 import net.sytes.codeline.dao.KorisnikDao;
 import net.sytes.codeline.dao.KorisnikDaoImpl;
+import net.sytes.codeline.dao.MaterijalDao;
+import net.sytes.codeline.dao.MaterijalDaoImpl;
 import net.sytes.codeline.dao.PredmetDao;
 import net.sytes.codeline.dao.PredmetDaoImpl;
 import net.sytes.codeline.dao.PredmetKorisnikaDao;
@@ -24,7 +27,9 @@ import net.sytes.codeline.dao.RolaDao;
 import net.sytes.codeline.dao.RolaDaoImpl;
 import net.sytes.codeline.dao.TemaDao;
 import net.sytes.codeline.dao.TemaDaoImpl;
+import net.sytes.codeline.entities.Komentar;
 import net.sytes.codeline.entities.Korisnik;
+import net.sytes.codeline.entities.Materijal;
 import net.sytes.codeline.entities.Predmet;
 import net.sytes.codeline.entities.PredmetKorisnika;
 import net.sytes.codeline.entities.Rola;
@@ -37,10 +42,9 @@ import net.sytes.codeline.entities.Tema;
  * along with bean definitions
  */
 @Configuration
-@ComponentScan("net.sytes.codeline")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
-
+	
 	/**
 	 * Method getDataSource
 	 * Defines the database, driver usage, and connection credentials
@@ -71,7 +75,7 @@ public class ApplicationContextConfig {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addAnnotatedClasses(Korisnik.class, Rola.class, Predmet.class
-				, PredmetKorisnika.class, Tema.class);
+				, PredmetKorisnika.class, Tema.class, Materijal.class, Komentar.class);
 		sessionBuilder.addProperties(getHibernateProperties());
 		
 		return sessionBuilder.buildSessionFactory();
@@ -134,5 +138,17 @@ public class ApplicationContextConfig {
 	@Bean(name="temaDao")
 	public TemaDao getTemaDao(SessionFactory sessionFactory) {
 		return new TemaDaoImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="materijalDao")
+	public MaterijalDao getMaterijalDao(SessionFactory sessionFactory) {
+		return new MaterijalDaoImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="komentarDao")
+	public KomentarDao getKomentarDao(SessionFactory sessionFactory) {
+		return new KomentarDaoImpl(sessionFactory);
 	}
 }
