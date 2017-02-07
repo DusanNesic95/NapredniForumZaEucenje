@@ -1,0 +1,16 @@
+<div class="intro">
+	<h1>Materijali</h1>
+	<p>Lista svih materijala</p>
+	<button type="button" class="btn btn-primary" ng-click="nazad()">Nazad na teme</button>
+	<button type="button" class="btn btn-primary" ng-click="dodajMaterijal()">Dodaj materijal</button>
+</div>
+
+<div class="content">
+	<h2>Odabrana tema: {{tema.nazivTeme}}</h2>
+	<br>
+	<input type="text" class="form-control" placeholder="Pretraga" ng-model="pretraga"></input>
+	
+	<div ng-repeat="materijal in materijali | filter : pretraga">
+		<materijal-blok materijal="materijal"></materijal-blok>
+	</div>
+</div>

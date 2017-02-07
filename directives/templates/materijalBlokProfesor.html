@@ -1,0 +1,16 @@
+<div class="materijalBlok">
+	<div class="materijalNaslov">
+		<h2>{{materijal.nazivMaterijala}}</h2>
+	</div>
+	<div class="materijalSadrzaj">
+		<p>{{materijal.opisMaterijala}}</p>
+		<p>Link: <a href="{{materijal.link}}">{{materijal.link}}</a></p>
+		<p>Slika: <br><img class="materijalSlika" src="{{materijal.video}}"></p>
+		<p>Autor: {{materijal.korisnikId.korisnickoIme}}</p>
+	</div>
+	<div class="materijalKomande">
+		<div class="materijalLike akcija" ng-click="svidjaMiSe(materijal)">{{materijal.brojPreporukaPozitivno}} <i class="fa fa-thumbs-o-up materijalLike"> Sviđa mi se</i></div>
+		<div class="materijalLike akcija" ng-click="neSvidjaMiSe(materijal)">{{materijal.brojPreporukaNegativno}} <i class="fa fa-thumbs-o-down materijalLike"> Ne sviđa mi se</i></div>
+		<div class="materijalLike akcija" ng-click="obelezi(materijal)">{{materijal.materijalFleg }} <i class="fa fa-plus-square-o materijalLike"> Obeleži za nastavni materijal</i></div>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+<div class="newAdministrator">
+	<h3 style="padding-left: 20px;">Predmet</h3>
+	<form style="padding-top: 30px; padding-left: 20px; padding-right: 20px;">
+		<label for="nazivPredmeta">Naziv predmeta:</label>
+		<input id="nazivPredmeta" type="text" class="form-control" ng-model="predmet.nazivPredmeta"></input>
+		<label for="opisPredmeta">Opis predmeta:</label>
+		<input id="opisPredmeta" type="text" class="form-control" ng-model="predmet.opisPredmeta"></input>
+		<label for="skolskaGodina">Školska godina:</label>
+		<input id="skolskaGodina" type="text" class="form-control" ng-model="predmet.skolskaGodina"></input>
+
+		<div style="padding-top: 20px;">
+			<button type="submit" class="btn btn-primary" ng-click="sacuvajIliIzmeni()">Sačuvaj</button>
+			<button type="button" class="btn btn-danger" ng-click="odustani()">Odustani</button>
+		</div>
+	</form>
+</div>

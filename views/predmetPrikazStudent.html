@@ -1,0 +1,26 @@
+<div class="intro">
+	<h1>Predmeti</h1>
+	<p>Lista svih predmeta</p>
+</div>
+
+<div class="content">
+	<input type="text" class="form-control" placeholder="Pretraga" ng-model="pretraga"></input>
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th>Naziv predmeta</th>
+	      <th>Opis predmeta</th>
+	      <th>Školska godina</th>
+	      <th>Datum kreiranja</th>
+	    </tr>
+	  </thead>
+	  <tbody ng-repeat="predmet in predmeti | filter : pretraga">
+	    <tr>
+	      <td>{{ predmet.nazivPredmeta }}</td>
+	      <td>{{ predmet.opisPredmeta }}</td>
+	      <td>{{ predmet.skolskaGodina | date }}</td>
+	      <td>{{ predmet.datumKreiranja | date }}</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

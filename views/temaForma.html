@@ -1,0 +1,18 @@
+<div class="newUser">
+	<h3 style="padding-left: 20px;">Dodaj novu temu</h3>
+	<form style="padding-top: 30px; padding-left: 20px; padding-right: 20px;">
+		<label for="userType">Naziv teme:</label>
+		<input type="text" class="form-control" id="name" ng-model="tema.nazivTeme" ng-disabled="tema.temaId"></input>
+
+		<label for="usrname">Opis teme:</label>
+		<input type="text" class="form-control" id="desc" ng-model="tema.opisTeme"></input>
+
+		<label for="usrname">Predmet:</label>
+		<select id="predmetSelect" class="form-control" style="margin-top: 5px;"></select>
+
+		<div style="padding-top: 20px;">
+			<button type="submit" class="btn btn-primary" ng-click="sacuvajTemu()">Sačuvaj temu</button>
+			<button type="button" class="btn btn-danger" ng-click="odustani()">Odustani</button>
+		</div>
+	</form>
+</div>

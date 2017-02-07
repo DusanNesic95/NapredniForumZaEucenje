@@ -1,0 +1,29 @@
+<div class="intro">
+	<h1>Teme</h1>
+	<p>Lista svih tema</p>
+	<button type="button" class="btn btn-primary" ng-click="novaTema()">Dodaj novu temu</button>
+</div>
+
+<div class="content">
+	<input type="text" class="form-control" placeholder="Pretraga" ng-model="search"></input>
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th>Naziv teme</th>
+	      <th>Opis teme</th>
+	      <th>Datum kreiranja</th>
+	      <th>Izmeni</th>
+	      <th>Prikaži materijale</th>
+	    </tr>
+	  </thead>
+	  <tbody ng-repeat="tema in teme | filter : search">
+	    <tr>
+	      <td>{{ tema.nazivTeme }}</td>
+	      <td>{{ tema.opisTeme }}</td>
+	      <td>{{ tema.datumKreiranja | date }}</td>
+	      <td><button class="btn btn-success" ng-click="izmeniTemu(tema)">Izmeni</button></td>
+	      <td><button class="btn btn-success" ng-click="prikaziMaterijale(tema)">Prikaži materijale</button></td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

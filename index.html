@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+  </head>
+  <body ng-app="NFE" ng-controller="loginController">
+    <div class="login-page">
+      <div class="form">
+        <img id="logoImage" src="img/logo.png" />
+        <h3>Napredni Forum za E-učenje</h3>
+        <form class="login-form">
+          <input type="text" placeholder="Korisničko ime" ng-model="korisnik.korisnickoIme">
+          <input type="password" placeholder="Lozinka" ng-model="korisnik.lozinka">
+          <button ng-click="login()"><b>Prijavi se</b></button>
+        </form>
+        <div id="wrongData"><b>Uneli ste pogrešne podatke, pokušajte ponovo!</b></div>
+        <div id="correctData"><b>Uspešna prijava!</b></div>
+      </div>
+    </div>
+
+    <!-- AngularJS dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
+
+    <!-- Including angular conrollers -->
+    <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+    <script type="text/javascript" src="javascript/App.js"></script>
+    <script type="text/javascript" src="javascript/Funkcije.js"></script>
+    <script type="text/javascript" src="controllers/LoginController.js"></script>
+  </body>
+</html>

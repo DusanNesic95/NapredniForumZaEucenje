@@ -1,0 +1,21 @@
+<div class="noviMaterijal">
+	<h3 style="padding-left: 20px;">Dodaj materijal</h3>
+	<form style="padding-top: 30px; padding-left: 20px; padding-right: 20px;">
+		<label for="usrname">Naslov materijala:</label>
+		<input type="text" class="form-control" ng-model="materijal.nazivMaterijala" ng-disabled="materijal.materijalId"></input>
+		<label for="usrname">Opis materijala:</label>
+		<input type="text" class="form-control" ng-model="materijal.opisMaterijala"></input>
+		<label for="usrname">Link:</label>
+		<input type="text" class="form-control" ng-model="materijal.link"></input>
+		<label for="usrname">Slika:</label><br>
+		<img id="image-preview" src="{{defaultImage}}" /></label>
+		<input id="image-picker" type="file" accept="image/*" />
+		<button type="button" ng-click=readURL()>Dodaj odabranu sliku</button>
+		<br><br><br><br><br><br><br>
+
+		<div style="padding-top: 20px;">
+			<button type="submit" class="btn btn-primary" ng-click="dodajMaterijal()">Dodaj materijal</button>
+			<button type="button" class="btn btn-danger" ng-click="odustani()">Odustani</button>
+		</div>
+	</form>
+</div>
