@@ -8,6 +8,7 @@ import net.sytes.codeline.dao.TemaDao;
 import net.sytes.codeline.entities.Predmet;
 import net.sytes.codeline.entities.Tema;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ public class TemaController {
 	 * @return - vraca true ukoliko je tema uspesno dodata, false ukoliko
 	 * je tema vec dodata
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/dodajtemu", method=RequestMethod.POST)
 	public boolean dodajTemu(@RequestBody Tema tema) {
 		return temaDao.dodajTemu(tema);
@@ -44,6 +46,7 @@ public class TemaController {
 	 * @return - vraca true ukoliko je tema uspesno izmenjena, false ukoliko
 	 * tema nije ni pronadjena
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/izmenitemu", method=RequestMethod.POST)
 	public boolean izmeniTemu(@RequestBody Tema tema) {
 		return temaDao.izmeniTemu(tema);
@@ -56,6 +59,7 @@ public class TemaController {
 	 * @return - vraca true ukoliko je tema uspesno izmenjena, false ukoliko
 	 * tema nije ni pronadjena
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/obrisitemu", method=RequestMethod.POST)
 	public boolean obrisiTemu(@RequestBody Tema tema) {
 		return temaDao.obrisiTemu(tema.getTemaId());
@@ -67,6 +71,7 @@ public class TemaController {
 	 * @return - vraca listu tema ukoliko u bazi postoje teme, vraca praznu
 	 * listu ukoliko u bazi nema kreiranih tema
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsveteme", method=RequestMethod.POST)
 	public List<Tema> ucitajSveTeme() {
 		return temaDao.ucitajSveTeme();
@@ -80,6 +85,7 @@ public class TemaController {
 	 * @return - vraca listu tema ukoliko u bazi postoje teme, vraca praznu
 	 * listu ukoliko u bazi nema kreiranih tema
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsvetemezapredmet", method=RequestMethod.POST)
 	public List<Tema> ucitajSveTemeZaPredmet(@RequestBody Predmet predmet) {
 		return temaDao.ucitajSveTemeZaPredmet(predmet);
@@ -92,6 +98,7 @@ public class TemaController {
 	 * @return - vraca objekat Tema ukoliko je isti pronadjen, ili null ukoliko
 	 * u bazi ne postoji tema
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajtemupoid", method=RequestMethod.POST)
 	public Tema ucitajTemuPoId(@RequestBody Tema tema) {
 		return temaDao.ucitajTemuPoId(tema.getTemaId());

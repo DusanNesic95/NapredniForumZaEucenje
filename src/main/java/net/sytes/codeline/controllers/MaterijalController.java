@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,7 @@ public class MaterijalController {
 	 * @param materijal - objekat koji se ubacuje u bazu podataka
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/dodajmaterijal", method=RequestMethod.POST)
 	public boolean dodajMaterijal(@RequestBody Materijal materijal) {
 		return materijalDao.dodajMaterijal(materijal);
@@ -47,6 +49,7 @@ public class MaterijalController {
 	 * @param materijal - objekat iz kojeg se preuzimaju atributi za azuriranje
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/izmenimaterijal", method=RequestMethod.POST)
 	public boolean izmeniMaterijal(@RequestBody Materijal materijal) {
 		return materijalDao.izmeniMaterijal(materijal);
@@ -58,6 +61,7 @@ public class MaterijalController {
 	 * @param materijal - id za pretragu u bazi
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/obrisimaterijal", method=RequestMethod.POST)
 	public boolean obrisiMaterijal(@RequestBody Materijal materijal) {
 		return materijalDao.obrisiMaterijal(materijal.getMaterijalId());
@@ -68,6 +72,7 @@ public class MaterijalController {
 	 * 
 	 * @return - lista korisnika java.util.List kolekcije
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsvematerijale", method=RequestMethod.POST)
 	public List<Materijal> ucitajSveMaterijale() {
 		return materijalDao.ucitajSveMaterijale();
@@ -79,6 +84,7 @@ public class MaterijalController {
 	 * @param materijal - id za pretragu baze
 	 * @return - vraca objekat Materijal ili null u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajmaterijalpoid", method=RequestMethod.POST)
 	public Materijal ucitajMaterijalPoId(@RequestBody Materijal materijal) {
 		return materijalDao.ucitajMaterijalPoId(materijal.getMaterijalId());
@@ -91,6 +97,7 @@ public class MaterijalController {
 	 * @return - vraca listu materijala ili praznu listu u zavisnosti od
 	 * DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajmaterijalepotemi", method=RequestMethod.POST)
 	public List<Materijal> ucitajMaterijalePoTemi(@RequestBody Tema tema) {
 		return materijalDao.ucitajMaterijalePoTemi(tema);
@@ -104,6 +111,7 @@ public class MaterijalController {
 	 * @return - vraca listu materijala ili praznu listu u zavisnosti od
 	 * DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajmaterijalepopredmetu", method=RequestMethod.POST)
 	public List<Materijal> ucitajMaterijalePoPredmetu(@RequestBody Predmet predmet) {
 		List<Tema> temePredmeta = temaDao.ucitajSveTemeZaPredmet(predmet);

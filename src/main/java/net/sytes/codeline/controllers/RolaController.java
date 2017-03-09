@@ -3,6 +3,7 @@ package net.sytes.codeline.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,7 @@ public class RolaController {
 	 * @param rola - objekat koji se ubacuje u bazu podataka
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/dodajrolu", method=RequestMethod.POST)
 	public boolean dodajRolu(@RequestBody Rola rola) {
 		return rolaDao.dodajRolu(rola);
@@ -42,6 +44,7 @@ public class RolaController {
 	 * @param rola - objekat iz kojeg se preuzimaju atributi za azuriranje
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/izmenirolu", method=RequestMethod.POST)
 	public boolean izmeniRolu(@RequestBody Rola rola) {
 		return rolaDao.izmeniRolu(rola);
@@ -53,6 +56,7 @@ public class RolaController {
 	 * @param id - id za pretragu u bazi
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/obrisirolu", method=RequestMethod.POST)
 	public boolean obrisiRolu(int id) {
 		return rolaDao.obrisiRolu(id);
@@ -64,6 +68,7 @@ public class RolaController {
 	 * @param id - id za pretragu baze
 	 * @return - vraca objekat Rola ili null u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajrolupoid", method=RequestMethod.POST)
 	public Rola ucitajRoluPoId(int id) {
 		return rolaDao.ucitajRoluPoId(id);
@@ -76,6 +81,7 @@ public class RolaController {
 	 * @param korisnik - korisnik za kojeg se baza pretrazuje
 	 * @return - vraca objekat Rola ili null u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajrolukorisnika", method=RequestMethod.POST)
 	public Rola ucitajRoluKorisnika(@RequestBody Korisnik korisnik) {
 		return rolaDao.ucitajRoluKorisnika(korisnik);
@@ -87,6 +93,7 @@ public class RolaController {
 	 * @return - vraca listu profesora ili praznu listu u zavisnosti
 	 * od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsveprofesore", method=RequestMethod.POST)
 	public List<Korisnik> ucitajSveProfesore() {
 		return rolaDao.ucitajSveProfesore();
@@ -98,6 +105,7 @@ public class RolaController {
 	 * @return - vraca listu profesora ili praznu listu u zavisnosti
 	 * od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsvestudente", method=RequestMethod.POST)
 	public List<Korisnik> ucitajSveStudente() {
 		return rolaDao.ucitajSveStudente();

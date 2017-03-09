@@ -3,6 +3,7 @@ package net.sytes.codeline.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,7 @@ public class PredmetController {
 	 * @param predmet - objekat koji se ubacuje u bazu podataka
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/dodajpredmet", method=RequestMethod.POST)
 	public boolean dodajPredmet(@RequestBody Predmet predmet) {
 		return predmetDao.dodajPredmet(predmet);
@@ -42,6 +44,7 @@ public class PredmetController {
 	 * @param predmet - objekat iz kojeg se preuzimaju atributi za azuriranje
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/izmenipredmet", method=RequestMethod.POST)
 	public boolean izmeniPredmet(@RequestBody Predmet predmet) {
 		return predmetDao.izmeniPredmet(predmet);
@@ -53,6 +56,7 @@ public class PredmetController {
 	 * @param id - id za pretragu u bazi
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/obrisipredmet", method=RequestMethod.POST)
 	public boolean obrisiPredmet(int id) {
 		return predmetDao.obrisiPredmet(id);
@@ -63,6 +67,7 @@ public class PredmetController {
 	 * 
 	 * @return - lista korisnika java.util.List kolekcije
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsvepredmete", method=RequestMethod.POST)
 	public List<Predmet> ucitajSvePredmete() {
 		return predmetDao.ucitajSvePredmete();
@@ -74,6 +79,7 @@ public class PredmetController {
 	 * @param id - id za pretragu baze
 	 * @return - vraca objekat Predmet ili null u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajpredmetpoid", method=RequestMethod.POST)
 	public Predmet ucitajPredmetPoId(int id) {
 		return predmetDao.ucitajPredmetPoId(id);

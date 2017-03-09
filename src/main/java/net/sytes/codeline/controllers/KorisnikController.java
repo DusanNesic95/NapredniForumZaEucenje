@@ -3,6 +3,7 @@ package net.sytes.codeline.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,7 @@ public class KorisnikController {
 	 * @param korisnik - objekat koji se ubacuje u bazu podataka
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/dodajkorisnika", method=RequestMethod.POST)
 	public boolean dodajKorisnika(@RequestBody Korisnik korisnik) {
 		return korisnikDao.dodajKorisnika(korisnik);
@@ -41,6 +43,7 @@ public class KorisnikController {
 	 * @param korisnik - objekat iz kojeg se preuzimaju atributi za azuriranje
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/izmenikorisnika", method=RequestMethod.POST)
 	public boolean izmeniKorisnika(@RequestBody Korisnik korisnik) {
 		return korisnikDao.izmeniKorisnika(korisnik);
@@ -52,6 +55,7 @@ public class KorisnikController {
 	 * @param id - id za pretragu u bazi
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/obrisikorisnika", method=RequestMethod.POST)
 	public boolean obrisiKorisnika(@RequestBody Korisnik korisnik) {
 		return korisnikDao.obrisiKorisnika(korisnik.getKorisnikId());
@@ -62,6 +66,7 @@ public class KorisnikController {
 	 * 
 	 * @return - lista korisnika java.util.List kolekcije
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsvekorisnike", method=RequestMethod.POST)
 	public List<Korisnik> ucitajSveKorisnike() {
 		return korisnikDao.ucitajSveKorisnike();
@@ -73,6 +78,7 @@ public class KorisnikController {
 	 * @param id - id za pretragu baze
 	 * @return - vraca objekat Korisnik ili null u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajkorisnikapoid", method=RequestMethod.POST)
 	public Korisnik ucitajKorisnikaPoId(int id) {
 		return korisnikDao.ucitajKorsinikaPoId(id);
@@ -84,6 +90,7 @@ public class KorisnikController {
 	 * @param korisnik - objekat koji sadrzi username i password
 	 * @return - vraca objekat Korisnik ili null u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/prijava", method=RequestMethod.POST)
 	public Korisnik prijava(@RequestBody Korisnik korisnik) {
 		return korisnikDao.prijava(korisnik);

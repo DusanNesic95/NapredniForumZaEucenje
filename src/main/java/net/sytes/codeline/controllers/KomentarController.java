@@ -3,6 +3,7 @@ package net.sytes.codeline.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,7 @@ public class KomentarController {
 	 * @param komentar - objekat koji se ubacuje u bazu podataka
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/dodajkomentar", method=RequestMethod.POST)
 	public boolean dodajKomentar(@RequestBody Komentar komentar) {
 		return komentarDao.dodajKomentar(komentar);
@@ -42,6 +44,7 @@ public class KomentarController {
 	 * @param komentar - objekat iz kojeg se preuzimaju atributi za azuriranje
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/izmenikomentar", method=RequestMethod.POST)
 	public boolean izmeniKomentar(@RequestBody Komentar komentar) {
 		return komentarDao.izmeniKomentar(komentar);
@@ -53,6 +56,7 @@ public class KomentarController {
 	 * @param komentar - id za pretragu u bazi
 	 * @return - vraca true/false u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/obrisikomentar", method=RequestMethod.POST)
 	public boolean obrisiKomentar(@RequestBody Komentar komentar) {
 		return komentarDao.obrisiKomentar(komentar.getKomentarId());
@@ -63,6 +67,7 @@ public class KomentarController {
 	 * 
 	 * @return - lista korisnika java.util.List kolekcije
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsvekomentare", method=RequestMethod.POST)
 	public List<Komentar> ucitajSveKomentare() {
 		return komentarDao.ucitajSveKomentare();
@@ -74,6 +79,7 @@ public class KomentarController {
 	 * @param komentar - id za pretragu baze
 	 * @return - vraca objekat Komentar ili null u zavisnosti od DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajkomentarpoid", method=RequestMethod.POST)
 	public Komentar ucitajKomentarPoId(@RequestBody Komentar komentar) {
 		return komentarDao.ucitajKomentarPoId(komentar.getKomentarId());
@@ -86,6 +92,7 @@ public class KomentarController {
 	 * @return - vraca listu komentara ili praznu listu u zavisnosti od
 	 * DAO sloja
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajkomentarepomaterijalu", method=RequestMethod.POST)
 	public List<Komentar> ucitajKomentarePoMaterijalu(Materijal materijal) {
 		return komentarDao.ucitajKomentarePoMaterijalu(materijal);

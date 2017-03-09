@@ -3,6 +3,7 @@ package net.sytes.codeline.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ public class PredmetKorisnikaController {
 	 * @return - vraca true ukoliko je predmet uspesno dodat korisniku, false ukoliko
 	 * je predmet vec dodat korisniku
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/dodajpredmetkorisniku", method=RequestMethod.POST)
 	public boolean dodajPredmetKorisniku(@RequestBody PredmetKorisnika predmetKorisnika) {
 		return predmetKorisnikaDao.dodajPredmetKorisniku(predmetKorisnika);
@@ -44,6 +46,7 @@ public class PredmetKorisnikaController {
 	 * @return - vraca true ukoliko je predmet uspesno obrisan korisniku, false ukoliko
 	 * predmet nije ni bio dodeljen korisniku
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/obrisipredmetkorisniku", method=RequestMethod.POST)
 	public boolean obrisiPredmetKorisniku(@RequestBody PredmetKorisnika predmetKorisnika) {
 		return predmetKorisnikaDao.obrisiPredmetKorisniku(predmetKorisnika);
@@ -56,6 +59,7 @@ public class PredmetKorisnikaController {
 	 * @return - vraca popunjenu listu predmeta koji su pronadjeni u bazi, ili praznu
 	 * listu ukoliko korisnik nema ni jedan dodeljen predmet
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/ucitajsvepredmetekorisnika", method=RequestMethod.POST)
 	public List<Predmet> ucitajSvePredmeteKorisnika(@RequestBody Korisnik korisnik) {
 		return predmetKorisnikaDao.ucitajSvePredmeteKorisnika(korisnik);
